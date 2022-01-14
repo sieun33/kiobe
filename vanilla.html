@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <span>총 클릭 갯수: 0</span>
+<button id="버튼아이디">클릭!</button>
+</body>
+<script>
+    let counter = 0;
+    const 버튼  = document.getElementById("버튼아이디");
+    const span = document.querySelector("span");
+    function 버튼클릭() {
+        counter = counter + 1;
+        span.innerText = `총 클릭 갯수: ${counter}`;
+    }
+    버튼.addEventListener("click",  버튼클릭);
+</script>
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root");
+        // React element를 가져다 놓을 곳
+        const h3 = React.createElement("h3", {
+            onMouseEnter: () => console.log("mouse enter"),
+
+        }, "안녕 난 삼삼");
+        // React JS로 element를 생성
+        const 버튼 = React.createElement("button",
+        {
+         onClick: () => console.log("나를 눌러"),
+        //  property에 eventListener 넣는 것도 가능.
+        // 콘솔에 안 뜨는 경우 event listener가 소문자, 대문자로 잘 적혀있는지 확인
+         style: {
+             backgroundColor: "yellow",
+         },
+         },
+          "눌러!");
+        const 모음 = React.createElement("div", null, [h3, 버튼]);
+        // 두 가지 const를 render 하고 싶은 경우 div를 만든다
+        // 실행 순서를 정하고 싶으면 array를 활용
+        ReactDOM.render(모음, root);
+        // ReactDOM은 React element를 가져다 html로 바꾸는 역할
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+function 어쩌구() {
+    return();
+}
+
+const 어쩌구 = () =>
+
+<!-- 둘이 같은 일을 함 -->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- JSX로 적은 코드를 브라우저가 이해할 수 있는 형태로 바꿔줌 -->
+    <script type="text/babel">
+        // 바벨을 가져온 뒤 script type="text/babel"로 적어줘야 인식
+        const root = document.getElementById("root");
+        function Ti() {
+            return(
+                <h3 id="title" onMouseEnter={()=> console.log("mouse enter")}>
+            안녕 난 삼삼
+            </h3>
+            );
+        }
+
+        function Bt() {
+            return(
+                <button style={{
+            backgroundColor: "yellow",
+            // 스타일은 {} 2개
+         }} 
+         onClick={() =>
+            console.log("나를 눌러")
+        }>눌러!
+        </button>
+            );
+        }
+        
+
+        const SAM = <div>
+            <Ti />
+            <Bt />
+             </div>
+            // html 태그로 인식할 수 있기 때문에 첫글자 대문자
+        // 두 가지 const를 render 하고 싶은 경우 div를 만든다
+        // 실행 순서를 정하고 싶으면 array를 활용
+        ReactDOM.render(SAM, root);
+        // ReactDOM은 React element를 가져다 html로 바꾸는 역할
+    </script>
+</html>
+
+
+
+
+
+
+const root = document.getElementById("root");
+let 클릭수 = 0;
+function 업업() {
+    클릭수 = 클릭수 + 1;
+    랜더링()
+    // 리랜더링해주기 그래야 업데이트 됨
+    // 함수를 다시 호출함
+    // 데이트가 바뀔때마다, 랜더링을 리렌더링해주기
+}
+
+function 랜더링() {
+    ReactDOM.render(<SAM />, root);
+}
+
+const SAM = () => (<div>
+    <h3>총 클릭수: {클릭수}</h3>
+    <button onClick={업업}>눌러!</button>
+     </div> );
+    랜더링();
+
+</script>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- JSX로 적은 코드를 브라우저가 이해할 수 있는 형태로 바꿔줌 -->
+    <script type="text/babel">
+        // 바벨을 가져온 뒤 script type="text/babel"로 적어줘야 인식
+        const root = document.getElementById("root");
+        
+
+        function SAM() {
+            const [클릭수, 변환] = React.useState(0);
+            // 리액트JS에서 데이터를 저장시켜 자동으로 리렌더링을 일으킬 수 있는 방법
+            // const data = React.useState();를 console.log 시키면
+            // [undefined, f ] -> undefined와 함수가 적힌 배열이 나타남
+            // undefined는 data이고 f는 data를 바꿀 때 사용하는 함수
+            // React.useState() 함수는 초기값을 설정할 수 있음
+            // 즉, undefined는 초기값이고 두 번째 요소인 f는 그 값을 바꾸는 함수
+
+            // 배열을 꺼내기
+            // const x = [1, 2, 3]
+            // const [a, b, c] = x;
+            // 으로 꺼낼 수 있음
+            
+            return (
+            <div>
+            <h3>총 클릭수: {클릭수}</h3>
+            <button>눌러!</button>
+             </div> );
+            }
+             ReactDOM.render(<SAM />, root);
+        
+    </script>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- JSX로 적은 코드를 브라우저가 이해할 수 있는 형태로 바꿔줌 -->
+    <script type="text/babel">
+        // 바벨을 가져온 뒤 script type="text/babel"로 적어줘야 인식
+        const root = document.getElementById("root");
+        
+
+        function SAM() {
+            const [클릭수, 클릭수저장] = React.useState(0);
+            // state가 변경되면 리렌더링이 일어나고 변경된 값으로 컴포넌트도 업데이트됨
+            // 리액트JS에서 데이터를 저장시켜 자동으로 리렌더링을 일으킬 수 있는 방법
+            // const data = React.useState();를 console.log 시키면
+            // [undefined, f ] -> undefined와 함수가 적힌 배열이 나타남
+            // undefined는 data이고 f는 data를 바꿀 때 사용하는 함수
+            // React.useState() 함수는 초기값을 설정할 수 있음
+            // 즉, undefined는 초기값이고 두 번째 요소인 f는 그 값을 바꾸는 함수
+
+            // 배열을 꺼내기
+            // const x = [1, 2, 3]
+            // const [a, b, c] = x;
+            // 으로 꺼낼 수 있음
+            const 클릭 = () => {
+                클릭수저장(클릭수 + 1)
+                // 자동으로 리렌더링해줌
+            }; 
+            
+            return (
+            <div>
+            <h3>총 클릭수: {클릭수}</h3>
+            <button onClick={클릭}>눌러!</button>
+             </div> );
+            }
+             ReactDOM.render(<SAM />, root);
+        
+    </script>
+</html>
+
+
+
+function SAM() {
+    const [클릭수, 클릭수저장] = React.useState(0);
+    const 클릭 = () => {
+
+        클릭수저장((클릭수) => 클릭수 + 1);
+        // 클릭수저장(클릭수 + 1);
+        // 둘다 현재의 state를 가지고 새로운 값을 계산하지만 윗쪽에 있는 것이 더 안전함
+       
+    }; 
+    
+    return (
+    <div>
+    <h3>총 클릭수: {클릭수}</h3>
+    <button onClick={클릭}>눌러!</button>
+     </div> );
+    }
+     ReactDOM.render(<SAM />, root);
+
+     flip function
+     <!-- 단위 변환을 뒤집어보는 함수 -->
+
+     disabled
+     <!-- 해당 칸 입력 불가능 -->
+
+
+
+
+
+
+     const [시간, set시간] = React.useState(0);
+            // 첫번째는 값이고 두번째는 값을 수정하고,component를 새로고침할때 쓰는 함수임
+            const [반전, set반전] = React.useState(false);
+            // 초기값으로 false를 가짐
+            const onChange = (event) => {
+                // 이 onChange함수는 데이터를 업데이트 해주는 역할
+                set시간(event.target.value);
+                // 데이터를 업데이트함
+            };
+            const 리셋 = () => set시간(0);
+            const 온반전 = () => {
+                리셋();
+                // 단위 변환를 누르면 변화된 값 그대로 가져오므로 온반전 변수에 리셋(); 넣어주기
+                set반전((current) => !current);
+                // 반전 값을 반대로 전환시키는 역할
+            };
+            // !current은 부정 명제이다
+            // 현재 값을 받아서 그 반대의 값을 내놓음
+            return (
+            <div>
+            <h1>개쩌는 변환기</h1>
+            <div>
+            <label htmlfor="분">응애</label>
+            // label은 input 옆에 써주는 글씨
+            // htmlfor은 label를 input와 연결시킴
+            <input 
+             value={반전 ? 시간*60 : 시간}
+            // 만약 반전 상태면 60으로 곱한 변환된 값 보여주기
+            //  아니라면 state에 있는 값을 그대로 보여주기
+             id="분" 
+             placeholder="분" 
+             type="number" 
+             onChange={onChange}
+            //  사용자가 input에 새로운 값을 입혁할 때마다 state를
+            // 업데이트 하고 싶을때 사용
+             disabled={반전}
+              />
+            </div>
+
+            <div>
+                <label htmlfor="시">시</label>
+                <input 
+                value={반전 ? 시간 : (시간 / 60)} 
+                // if문 만약 반전 상태면 state에 있는 값을 그대로 보여주기
+                // 아니라면 60으로 나눈 변환된 값 보여주기
+                id="시" 
+                placeholder="시" 
+                type="number"
+                disabled={!반전}
+                onChange={onChange} />
+            </div>
+            <button onClick={리셋}>리셋하기!</button>
+            <button onClick={온반전}>단위 변환</button>
+             </div> );
+            }
+            // input은 스스로 업데이트 함
+            // input의 value를 연결시켜주는 이유는
+            // input을 외부에서 수정해주기 위함
+
+
+
+
+
+
+
+            <!DOCTYPE html>
+<html>
+<body>
+    <div id="root"></div>
+</body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+       
+        
+function 시간과분 () {
+    const [시간, set시간] = React.useState(0);
+            // 첫번째는 값이고 두번째는 값을 수정하고,component를 새로고침할때 쓰는 함수임
+            const [반전, set반전] = React.useState(false);
+            // 초기값으로 false를 가짐
+            const onChange = (event) => {
+                // 이 onChange함수는 데이터를 업데이트 해주는 역할
+                set시간(event.target.value);
+                // 데이터를 업데이트함
+            };
+            const 리셋 = () => set시간(0);
+            const 온반전 = () => {
+                리셋();
+                // 단위 변환를 누르면 변화된 값 그대로 가져오므로 온반전 변수에 리셋(); 넣어주기
+                set반전((current) => !current);
+                // 반전 값을 반대로 전환시키는 역할
+            };
+            // !current은 부정 명제이다
+            // 현재 값을 받아서 그 반대의 값을 내놓음
+            return (
+            <div>
+            
+            <div>
+            <label htmlfor="분">응애</label>
+           
+            <input 
+             value={반전 ? 시간*60 : 시간}
+            //  만약 반전 상태면 60으로 곱한 변환된 값 보여주기
+            //  아니라면 state에 있는 값을 그대로 보여주기
+
+            // label은 input 옆에 써주는 글씨
+            // htmlfor은 label를 input와 연결시킴
+
+             id="분" 
+             placeholder="분" 
+             type="number" 
+             onChange={onChange}
+            //  사용자가 input에 새로운 값을 입혁할 때마다 state를
+            // 업데이트 하고 싶을때 사용
+             disabled={반전}
+              />
+            </div>
+
+            <div>
+                <label htmlfor="시">시</label>
+                <input 
+                value={반전 ? 시간 : (시간 / 60)} 
+                // if문 만약 반전 상태면 state에 있는 값을 그대로 보여주기
+                // 아니라면 60으로 나눈 변환된 값 보여주기
+                id="시" 
+                placeholder="시" 
+                type="number"
+                disabled={!반전}
+                onChange={onChange} />
+            </div>
+            <button onClick={리셋}>리셋하기!</button>
+            <button onClick={온반전}>단위 변환</button>
+             </div> );
+            }
+            // input은 스스로 업데이트 함
+            // input의 value를 연결시켜주는 이유는
+            // input을 외부에서 수정해주기 위함
+
+
+function 킬로미터() {
+    return <h3>킬로미터 2 미터</h3>
+}
+        function App() {
+            const [인덱스, set인덱스] = React.useState(0)
+            const 온셀렉트 = (event) => {
+                set인덱스(event.target.value);
+                // 사용자가 뭘 선택했는지 알 수 있음
+                // set인덱스(modifier 함수)가 실행하면 모든 컴포넌트가 새로고침됨
+            };
+            return (
+            <div>
+            <h1>개쩌는 변환기</h1> 
+            <select value={인덱스} onChange={온셀렉트
+            }>
+                <option value="0">시간 & 분</option>
+                <option value="1">킬로미터 & 마일</option>
+                </select>
+                {인덱스 === "0" ? <시간과분 /> : null}
+                {인덱스 === "1" ? <킬로미터 /> : null}
+             </div> );
+             <hr />
+            //  {} 안에느 JS를 쓸 수 있음
+            }
+            const root = document.getElementById("root");
+             ReactDOM.render(<App />, root);
+        
+    </script>
+</html>
